@@ -67,6 +67,57 @@ def _2566():
     print(max_val)
     print(max_row + 1, max_col + 1)
 
+def _2580():
+    import sys
+
+    def solve_studocu(plate, zero_idx, idx, row_set, col_set, block_set):
+        if idx == len(zero_idx):
+            for row in plate:
+                print(*row)
+            sys.exit(0)
+
+        row, col = zero_idx[idx]
+        for i in range(1, 10):
+            if i not in row_set[row] and i not in col_set[col] and i not in block_set[row // 3][col // 3]:
+                plate[row][col] = i
+                row_set[row].add(i)
+                col_set[col].add(i)
+                block_set[row // 3][col // 3].add(i)
+
+                solve_studocu(plate, zero_idx, idx + 1, row_set, col_set, block_set)
+
+                plate[row][col] = 0
+                row_set[row].remove(i)
+                col_set[col].remove(i)
+                block_set[row // 3][col // 3].remove(i)
+
+    def get_zero_idx(plate):
+        idx = []
+        for i in range(9):
+            for j in range(9):
+                if plate[i][j] == 0:
+                    idx.append((i, j))
+        return idx
+
+    def initialize_sets(plate):
+        row_set = [set() for _ in range(9)]
+        col_set = [set() for _ in range(9)]
+        block_set = [[set() for _ in range(3)] for _ in range(3)]
+
+        for i in range(9):
+            for j in range(9):
+                num = plate[i][j]
+                if num != 0:
+                    row_set[i].add(num)
+                    col_set[j].add(num)
+                    block_set[i // 3][j // 3].add(num)
+        return row_set, col_set, block_set
+
+    studocu_start = [list(map(int, input().split())) for i in range(9)]
+    nums = get_zero_idx(studocu_start)
+    row_set, col_set, block_set = initialize_sets(studocu_start)
+    solve_studocu(studocu_start, nums, 0, row_set, col_set, block_set)
+
 def _2581():
     start = int(input())
     end = int(input())

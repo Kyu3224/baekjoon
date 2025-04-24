@@ -27,6 +27,26 @@ def _2444():
             stars = " " * (i - num_stars + 1) + "*" * (4 * num_stars - 2 * i - 3)
         print(stars)
 
+def _2447():
+    def make_star(star_array, search_size, row, col):
+        if search_size == 1:
+            return
+        size = search_size // 3
+        for i in range(size):
+            for j in range(size):
+                star_array[row + size + i][col + size + j] = False
+        for i in range(3):
+            for j in range(3):
+                if i == j == 1:
+                    continue
+                make_star(star_array, size, row + i * size, col + j * size)
+
+    star_size = int(input())
+    star_array = [[True for j in range(star_size)] for i in range(star_size)]
+    make_star(star_array, star_size, 0, 0)
+    for row in star_array:
+        print(''.join('*' if cell else ' ' for cell in row))
+
 def _2480():
     a, b, c = map(int, input().split())
     num_list = [a, b, c]
