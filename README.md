@@ -1,6 +1,7 @@
 # 🧠 Baekjoon Online Judge Problem Solving
 
 이 저장소는 [백준 온라인 저지 (Baekjoon Online Judge)](https://www.acmicpc.net/)의 알고리즘 문제들을 Python으로 풀이한 코드 모음입니다.  
+백준 ID: https://www.acmicpc.net/user/lmk3224
 
 ---
 
@@ -14,3 +15,10 @@
 
 - 각 디렉토리 내부에는 다시 100번 단위로 정리된 문제들이 존재합니다:
   - 예: `10000s` 디렉토리에는 `10100s.py`, `10200s.py`, ..., `10300s.py` 파일이 위치
+
+- 각 .py 내부에는 1번 단위로 정리된 문제 풀이들이 존재합니다:
+  - 예: `1000s.py` 파일 내부에는 `_1001()`, `_1002()`, ..., `_1099()` 함수들이 위치
+ 
+---
+
+To be added: C++ code
