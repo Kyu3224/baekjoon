@@ -27,6 +27,23 @@ def _1929():
             num_prime.append(num)
     print(*num_prime,sep='\n')
 
+def _1932():
+    import sys
+    input = sys.stdin.readline
+
+    n = int(input())
+    prev = list(map(int, input().split()))
+    new = prev
+    for i in range(n - 1):
+        new = list(map(int, input().split()))
+        nums_to_select = len(new) - 2
+        new[0] += prev[0]
+        new[-1] += prev[-1]
+        for j in range(nums_to_select):
+            new[j + 1] += max(prev[j], prev[j + 1])
+        prev = new
+    print(max(new))
+
 def _1934():
     import math
 

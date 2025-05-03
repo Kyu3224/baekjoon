@@ -1,3 +1,18 @@
+def _1149():
+    import sys
+    input = sys.stdin.readline
+
+    num_house = int(input())
+    prev = list(map(int, input().split()))
+    new = prev
+    for i in range(num_house - 1):
+        new = list(map(int, input().split()))
+        new[0] += min(prev[1], prev[2])
+        new[1] += min(prev[0], prev[2])
+        new[2] += min(prev[0], prev[1])
+        prev = new
+    print(min(new))
+
 def _1152():
     print(len(input().split()))
 
