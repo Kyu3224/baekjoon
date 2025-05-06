@@ -37,5 +37,18 @@ def _11050():
     n, k = map(int,input().split())
     print(factorial(n)//(factorial(k)*factorial(n-k)))
 
+def _11053():
+    num_seq = int(input())
+    num_list = list(map(int, input().split()))
+
+    dp = [1] * num_seq
+
+    for i in range(1, num_seq):
+        for j in range(i):
+            if num_list[j] < num_list[i]:
+                dp[i] = max(dp[i], dp[j] + 1)
+
+    print(max(dp))
+
 if __name__ == '__main__':
     _11050()

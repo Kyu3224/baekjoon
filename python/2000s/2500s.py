@@ -67,6 +67,28 @@ def _2566():
     print(max_val)
     print(max_row + 1, max_col + 1)
 
+def _2579():
+    import sys
+    input = sys.stdin.readline
+
+    num_input = int(input())
+    score = [int(input()) for _ in range(num_input)]
+
+    if num_input == 1:
+        print(score[0])
+    elif num_input == 2:
+        print(score[0] + score[1])
+    elif num_input == 3:
+        print(max(score[0] + score[2], score[1] + score[2]))
+    else:
+        dp = [0] * num_input
+        dp[0] = score[0]
+        dp[1] = score[0] + score[1]
+        dp[2] = max(score[0] + score[2], score[1] + score[2])
+        for i in range(3, num_input):
+            dp[i] = max(dp[i - 2] + score[i], dp[i - 3] + score[i - 1] + score[i])
+        print(dp[-1])
+
 def _2580():
     import sys
 

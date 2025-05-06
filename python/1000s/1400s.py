@@ -16,5 +16,20 @@ def _1436():
                 break
         start_num += 1
 
+def _1463():
+    num = int(input())
+    memo = [0] * 1000001
+    for i in range(2, num + 1):
+        if i % 6 == 0:
+            value = min(memo[i // 2], memo[i // 3], memo[i - 1])
+        elif i % 2 == 0:
+            value = min(memo[i // 2], memo[i - 1])
+        elif i % 3 == 0:
+            value = min(memo[i // 3], memo[i - 1])
+        else:
+            value = memo[i - 1]
+        memo[i] = value + 1
+    print(memo[num])
+
 if __name__ == '__main__':
     _1427()

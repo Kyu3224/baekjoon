@@ -13,6 +13,19 @@ def _1904():
 
     print(dp(int(input())))
 
+def _1912():
+    import sys
+    input = sys.stdin.readline
+
+    num_input = int(input())
+    nums = list(map(int, input().split()))
+    prev = nums[0]
+    max_val = prev
+    for i in range(1, num_input):
+        prev = max(prev + nums[i], nums[i])
+        max_val = max(max_val, prev)
+    print(max_val)
+
 def _1929():
     import math
     start, end = map(int,input().split())

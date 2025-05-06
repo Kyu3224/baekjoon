@@ -98,6 +98,22 @@ def _10818():
     array_num.sort()
     print(f"{array_num[0]} {array_num[N - 1]}")
 
+def _10844():
+    num = int(input())
+    memo = [1] * 10
+    memo[0] = 0
+    for i in range(num - 1):
+        prev = memo.copy()
+        for j in range(0, 10):
+            if j == 0:
+                memo[j] = prev[1]
+            elif j == 9:
+                memo[j] = prev[8]
+            else:
+                memo[j] = prev[j - 1] + prev[j + 1]
+    print(sum(memo) % 1000000000)
+
+
 def _10869():
     a, b = map(int, input().split())
     print(a + b)
