@@ -22,6 +22,23 @@ def _2525():
 def _2557():
     print('Hello World!')
 
+def _2559():
+    import sys
+    _input = sys.stdin.readline
+
+    num_list, days = map(int, _input().split())
+    items = list(map(int, _input().split()))
+    max_val = 0
+    for i in range(days):
+        max_val += items[i]
+    prev = max_val
+
+    for i in range(num_list - days):
+        new = items[i + days] - items[i]
+        prev += new
+        max_val = max(max_val, prev)
+    print(max_val)
+
 def _2562():
     max_idx = 1
     max_value = int(input())
@@ -49,6 +66,27 @@ def _2563():
                     area += 1
                     break
     print(area)
+
+def _2565():
+    import sys
+    from collections import deque
+    _input = sys.stdin.readline
+    num_seq = int(_input())
+
+    num_list = deque([])
+
+    for i in range(num_seq):
+        a, b = map(int, _input().split())
+        num_list.append([a, b])
+    list_sorted = [sorted(num_list, key=lambda x: x[0])[i][1] for i in range(num_seq)]
+
+    dp = [1] * num_seq
+
+    for i in range(1, num_seq):
+        for j in range(i):
+            if list_sorted[j] < list_sorted[i]:
+                dp[i] = max(dp[i], dp[j] + 1)
+    print(num_seq - max(dp))
 
 def _2566():
     num_row = num_col = 9

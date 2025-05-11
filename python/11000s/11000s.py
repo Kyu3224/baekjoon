@@ -50,5 +50,23 @@ def _11053():
 
     print(max(dp))
 
+def _11054():
+    num_seq = int(input())
+    num_list = list(map(int, input().split()))
+
+    dp_inc = [1] * num_seq
+    dp_dec = [1] * num_seq
+
+    for i in range(1, num_seq):
+        for j in range(i):
+            if num_list[j] < num_list[i]:
+                dp_inc[i] = max(dp_inc[i], dp_inc[j] + 1)
+            if num_list[num_seq - j - 1] < num_list[num_seq - i - 1]:
+                dp_dec[num_seq - i - 1] = max(dp_dec[num_seq - i - 1], dp_dec[num_seq - j - 1] + 1)
+
+    dp_tot = [x + y for x, y in zip(dp_inc, dp_dec)]
+    print(max(dp_tot) - 1)
+
+
 if __name__ == '__main__':
     _11050()
