@@ -25,6 +25,22 @@ def _10952():
             break
         print(a + b)
 
+def _10986():
+    from collections import defaultdict
+    n, m = map(int, input().split())
+    nums = list(map(int, input().split()))
+    num_sum = [0] * (n + 1)
+    mod_dict = defaultdict(int)
+    cnt = 0
+    for i in range(n):
+        num_sum[i + 1] = nums[i] + num_sum[i]
+    for i in range(n + 1):
+        num_sum[i] = num_sum[i] % m
+        mod_dict[num_sum[i]] += 1
+    for key in mod_dict.keys():
+        cnt += mod_dict[key] * (mod_dict[key] - 1) // 2
+    print(cnt)
+
 def _10988():
     word = input()
     is_sym = True

@@ -39,5 +39,23 @@ def _11659():
         result = prefix_sum[end_idx] - prefix_sum[start_idx - 1]
         print(result)
 
+
+def _11660():
+    import sys
+    input = sys.stdin.readline
+
+    n, m = map(int, input().strip().split())
+    main_table = [[0] * (n + 1) for i in range(n + 1)]
+    sum_table = [[0] * (n + 1) for i in range(n + 1)]
+    for i in range(1, n + 1):
+        main_table[i][1:] = list(map(int, input().strip().split()))
+    for i in range(1, n + 1):
+        for j in range(1, n + 1):
+            sum_table[i][j] = main_table[i][j] + sum_table[i][j - 1] + sum_table[i - 1][j] - sum_table[i - 1][j - 1]
+    for i in range(m):
+        x1, y1, x2, y2 = map(int, input().strip().split())
+        print(sum_table[x2][y2] - sum_table[x2][y1 - 1] - sum_table[x1 - 1][y2] + sum_table[x1 - 1][y1 - 1])
+
+
 if __name__ == '__main__':
     _11654()
