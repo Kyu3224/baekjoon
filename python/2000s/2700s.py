@@ -42,6 +42,22 @@ def _2739():
     for i in range(1, 10):
         print(f"{number} * {i} = {number * i}")
 
+def _2740():
+    import sys
+    _input = lambda: sys.stdin.readline().strip()
+    n, m = map(int, _input().split())
+    mat_a = [list(map(int, input().split())) for _ in range(n)]
+    m, k = map(int, _input().split())
+    mat_b = [list(map(int, input().split())) for _ in range(m)]
+    mat = [[0] * k for _ in range(n)]
+    for p in range(n):
+        row = mat_a[p]
+        for q in range(m):
+            for r in range(k):
+                mat[p][r] += row[q] * mat_b[q][r]
+    for row in mat:
+        print(*row)
+
 def _2743():
     print(len(input()))
 

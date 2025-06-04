@@ -1,3 +1,20 @@
+def _1541():
+    words = input()
+    word_split = words.split('-')
+    word_processed = [0] * len(word_split)
+    for idx, word in enumerate(word_split):
+        if word.isdigit():
+            word_processed[idx] = int(word)
+        else:
+            sum_word = word.split('+')
+            for _word in sum_word:
+                word_processed[idx] += int(_word)
+    word_sum = word_processed[0]
+    for idx in range(1, len(word_processed)):
+        word_sum -= word_processed[idx]
+    print(word_sum)
+
+
 def _1546():
     num = int(input())
     score_list = list(map(int, input().split()))

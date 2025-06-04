@@ -20,5 +20,40 @@ def _1764():
             see_list[name] = 'y'
     print(len(see_list), *sorted(list(see_list.keys())), sep='\n')
 
+def _1780():
+    def recur_div(size, arr, counter):
+        total_value = 0
+        real_value = 0
+        for row in arr:
+            total_value += sum(map(abs, row))
+            real_value += sum(row)
+        if total_value == 0:
+            counter['n_zero'] += 1
+        elif real_value == -size ** 2:
+            counter['n_neg'] += 1
+        elif real_value == size ** 2:
+            counter['n_pos'] += 1
+        else:
+            tri = size // 3
+            recur_div(tri, [row[:tri] for row in arr[:tri]], counter)
+            recur_div(tri, [row[tri:2 * tri] for row in arr[:tri]], counter)
+            recur_div(tri, [row[2 * tri:] for row in arr[:tri]], counter)
+            recur_div(tri, [row[:tri] for row in arr[tri:2 * tri]], counter)
+            recur_div(tri, [row[tri:2 * tri] for row in arr[tri:2 * tri]], counter)
+            recur_div(tri, [row[2 * tri:] for row in arr[tri:2 * tri]], counter)
+            recur_div(tri, [row[:tri] for row in arr[2 * tri:]], counter)
+            recur_div(tri, [row[tri:2 * tri] for row in arr[2 * tri:]], counter)
+            recur_div(tri, [row[2 * tri:] for row in arr[2 * tri:]], counter)
+
+    import sys
+    from collections import defaultdict
+
+    _input = lambda: sys.stdin.readline().strip()
+    num_input = int(_input())
+    board_array = [list(map(int, _input().split())) for i in range(num_input)]
+    counter = defaultdict(int)
+    recur_div(num_input, board_array, counter)
+    print(counter['n_neg'], counter['n_zero'], counter['n_pos'], sep="\n")
+
 if __name__ == '__main__':
     _1735()

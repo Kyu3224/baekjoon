@@ -32,6 +32,23 @@ def _11022():
         a, b = map(int, input().split())
         print(f"Case #{i + 1}: {a} + {b} = {a + b}")
 
+def _11047():
+    num_coins, target = map(int, input().split())
+    coins = []
+    for i in range(num_coins):
+        coins.append(int(input()))
+    num_coins = 0
+    for coin in reversed(coins):
+        if target == 0:
+            break
+        if target // coin == 0:
+            continue
+        else:
+            coin_used = target // coin
+            num_coins += coin_used
+            target -= coin * coin_used
+    print(num_coins)
+
 def _11050():
     from math import factorial
     n, k = map(int,input().split())

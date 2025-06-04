@@ -40,6 +40,24 @@ def _1929():
             num_prime.append(num)
     print(*num_prime,sep='\n')
 
+def _1931():
+    import sys
+    _input = lambda: sys.stdin.readline().strip()
+    num_input = int(_input())
+    input_list = []
+    for _ in range(num_input):
+        start, end = map(int, _input().split())
+        input_list.append([start, end])
+
+    input_list = sorted(input_list, key=lambda x: (x[1], x[0]))
+    num_schedule = 0
+    end_time = 0
+    for start, end in input_list:
+        if start >= end_time:
+            num_schedule += 1
+            end_time = end
+    print(num_schedule)
+
 def _1932():
     import sys
     input = sys.stdin.readline
@@ -79,6 +97,29 @@ def _1978():
         if is_prime:
             num_prime += 1
     print(num_prime)
+
+def _1992():
+    def quad(size, arr):
+        total_value = 0
+        for row in arr:
+            total_value += sum(row)
+        if total_value == 0:
+            return '0'
+        elif total_value == size ** 2:
+            return '1'
+        else:
+            half = size // 2
+            upper_left = quad(half, [row[:half] for row in arr[:half]])
+            upper_right = quad(half, [row[half:] for row in arr[:half]])
+            lower_left = quad(half, [row[:half] for row in arr[half:]])
+            lower_right = quad(half, [row[half:] for row in arr[half:]])
+            return '(' + upper_left + upper_right + lower_left + lower_right + ')'
+
+    import sys
+    _input = lambda: sys.stdin.readline().strip()
+    num_input = int(_input())
+    board_array = [list(map(int, _input())) for i in range(num_input)]
+    print(quad(num_input, board_array))
 
 if __name__ == "__main__":
     _1929()
