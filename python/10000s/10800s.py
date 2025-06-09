@@ -98,6 +98,40 @@ def _10818():
     array_num.sort()
     print(f"{array_num[0]} {array_num[N - 1]}")
 
+def _10830():
+    import sys
+
+    _input = lambda: sys.stdin.readline().strip()
+
+    def mat_mul(mat_a, mat_b):
+        mat_size = len(mat_a)
+        result_mat = [[0] * mat_size for _ in range(mat_size)]
+        for p in range(mat_size):
+            row = mat_a[p]
+            for q in range(mat_size):
+                for r in range(mat_size):
+                    result_mat[p][r] += row[q] * mat_b[q][r]
+                    result_mat[p][r] %= 1000
+        return result_mat
+
+    def mat_exp(mat, pow):
+        if pow == 1:
+            return [[x % 1000 for x in row] for row in mat]
+        elif pow == 2:
+            return mat_mul(mat, mat)
+        elif pow % 2 == 0:
+            mat_half = mat_exp(mat, pow=pow // 2)
+            return mat_mul(mat_half, mat_half)
+        else:
+            mat_half = mat_exp(mat, pow=pow // 2)
+            return mat_mul(mat_mul(mat_half, mat_half), mat)
+
+    mat_len, mat_pow = map(int, input().split())
+    mat = [list(map(int, input().split())) for _ in range(mat_len)]
+    mat_fin = mat_exp(mat, mat_pow)
+    for row in mat_fin:
+        print(*row)
+
 def _10844():
     num = int(input())
     memo = [1] * 10
