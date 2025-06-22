@@ -1,3 +1,29 @@
+def _2805():
+    def check_tree(trees, length, length_require):
+        tree_length = 0
+        for tree in trees:
+            if tree > length:
+                tree_length += tree - length
+            if tree_length >= length_require:
+                return True
+        else:
+            return False
+
+    def param_search(l, h, length_require, tree_arr):
+        if l == h:
+            return l
+        m = (l + h + 1) // 2
+        if check_tree(tree_arr, m, length_require):
+            return param_search(m, h, length_require, tree_arr)
+        else:
+            return param_search(l, m - 1, length_require, tree_arr)
+
+    num_tree, tree_height = map(int, input().split())
+    trees = list(map(int, input().split()))
+    low = 0
+    high = max(trees)
+    print(param_search(low, high, tree_height, trees))
+
 def _2839():
     total_mass = int(input())
     max_iter = total_mass // 3

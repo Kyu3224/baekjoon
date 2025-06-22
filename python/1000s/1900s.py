@@ -26,6 +26,27 @@ def _1912():
         max_val = max(max_val, prev)
     print(max_val)
 
+def _1920():
+    def check(num, numbers, high, low):
+        # Avoid Slicing such as numbers[mid:]!
+        if low > high:
+            return 0
+        mid = (low + high) // 2
+        if numbers[mid] == num:
+            return 1
+        elif numbers[mid] < num:
+            return check(num, numbers, high, mid + 1)
+        else:
+            return check(num, numbers, mid - 1, low)
+
+    num_input = int(input())
+    nums = list(map(int, input().split()))
+    nums = sorted(nums)
+    num_query = int(input())
+    queries = list(map(int, input().split()))
+    for i in range(num_query):
+        print(check(queries[i], nums, high=num_input - 1, low=0))
+
 def _1929():
     import math
     start, end = map(int,input().split())

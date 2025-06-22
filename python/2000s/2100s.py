@@ -27,6 +27,36 @@ def _2108():
     # range
     print(key_list[-1] - key_list[0])
 
+def _2110():
+    def is_feasible(house_arr, house_dist, num_net):
+        count = 1
+        last_pos = house_arr[0]
+        for i in range(1, len(house_arr)):
+            if house_arr[i] - last_pos >= house_dist:
+                count += 1
+                last_pos = house_arr[i]
+                if count >= num_net:
+                    return True
+        return False
+
+    def param_search(l, h, house_arr, num_net):
+        if l == h:
+            return l
+        m = (l + h + 1) // 2
+        if is_feasible(house_arr, m, num_net):
+            return param_search(m, h, house_arr, num_net)
+        else:
+            return param_search(l, m - 1, house_arr, num_net)
+
+    num_house, num_net = map(int, input().split())
+    houses = [int(input()) for _ in range(num_house)]
+    houses = sorted(houses)
+    min_pos = min(houses)
+    max_pos = max(houses)
+    low = 1
+    high = houses[-1] - houses[0]
+    print(param_search(low, high, houses, num_net))
+
 def _2156():
     import sys
     input = sys.stdin.readline

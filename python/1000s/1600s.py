@@ -30,5 +30,35 @@ def _1629():
     base_num, exp_num, mod_num = map(int, input().split())
     print(recur_remainder(base_num, exp_num, mod_num))
 
+def _1654():
+    def check_lan(lans, length, num_require):
+        num_lan = 0
+        for lan in lans:
+            num_lan += lan // length
+            if num_lan >= num_require:
+                return True
+        else:
+            return False
+
+    def param_search(l, h, num_require, lan_array):
+        if l == h:
+            return l
+        m = (l + h + 1) // 2
+        if check_lan(lan_array, m, num_require):
+            return param_search(m, h, num_require, lan_array)
+        else:
+            return param_search(l, m - 1, num_require, lan_array)
+
+    lan_have, lan_require = map(int, input().split())
+    lans = []
+    low = 1
+    high = 1
+    for i in range(lan_have):
+        num = int(input())
+        lans.append(num)
+        if num > high:
+            high = num
+    print(param_search(low, high, lan_require, lans))
+
 if __name__ == '__main__':
     _1620()
