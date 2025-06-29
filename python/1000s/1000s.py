@@ -6,6 +6,29 @@ def _1001():
     a1, a2 = map(int,input().split())
     print(a1 - a2)
 
+def _1002():
+    import sys
+
+    _input = sys.stdin.readline
+    T = int(_input())
+    for _ in range(T):
+        pts = list(map(int, _input().split()))
+        dist = (pts[0] - pts[3]) ** 2 + (pts[1] - pts[4]) ** 2
+        r_sum = (pts[2] + pts[5]) ** 2
+        r_diff = (pts[2] - pts[5]) ** 2
+        if dist:
+            if r_sum == dist or r_diff == dist:
+                print(1)
+            elif r_diff < dist < r_sum:
+                print(2)
+            else:
+                print(0)
+        else:
+            if pts[2] == pts[5]:
+                print(-1)
+            else:
+                print(0)
+
 def _1008():
     a, b = map(int, input().split())
     print(a / b)

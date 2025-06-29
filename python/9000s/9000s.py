@@ -15,6 +15,27 @@ def _9012():
                 ps_list.pop(-1)
         print("YES" if is_vsp and not ps_list else "NO")
 
+def _9020():
+    import sys
+
+    _input = sys.stdin.readline
+    prime_table = [True] * 10001
+    for i in range(2, len(prime_table)):
+        for j in range(2, i):
+            if i % j == 0:
+                prime_table[i] = False
+                break
+    T = int(_input())
+    for _ in range(T):
+        num = int(_input())
+        start, end = 2, num - 2
+        while start <= end:
+            if prime_table[start] and prime_table[end]:
+                a, b = start, end
+            start += 1
+            end -= 1
+        print(a, b)
+
 def _9063():
     num_input = int(input())
     x_min = x_max = y_min = y_max = None

@@ -1,3 +1,17 @@
+def _1110():
+    num = int(input())
+    cnt = 0
+    num_after = num
+    while True:
+        if cnt and num_after == num:
+            print(cnt)
+            break
+        if num_after < 10:
+            num_after = 11 * num_after
+        else:
+            num_after = (num_after % 10) * 10 + (num_after // 10 + num_after % 10) % 10
+        cnt += 1
+
 def _1149():
     import sys
     input = sys.stdin.readline

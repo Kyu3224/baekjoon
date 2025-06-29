@@ -22,6 +22,10 @@ def _2525():
 def _2557():
     print('Hello World!')
 
+def _2558():
+    nums = [int(input()) for _ in range(2)]
+    print(sum(nums))
+
 def _2559():
     import sys
     _input = sys.stdin.readline
@@ -104,6 +108,18 @@ def _2566():
                 max_row = i
     print(max_val)
     print(max_row + 1, max_col + 1)
+
+def _2577():
+    nums = [int(input()) for i in range(3)]
+    num_counter = 10 * [0]
+    mul = 1
+    for num in nums:
+        mul *= num
+    mul = str(mul)
+    for char in mul:
+        num_counter[int(char)] += 1
+    for cnt in num_counter:
+        print(cnt)
 
 def _2579():
     import sys
